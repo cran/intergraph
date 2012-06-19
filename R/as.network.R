@@ -1,5 +1,5 @@
 # create 'network' objects from data frame(s)
-# inspired by igraph::graph.data.frame
+# inspired by igraph0::graph.data.frame
 
 as.network.data.frame <- function(x, directed=TRUE, vertices=NULL, ...)
 {
@@ -7,9 +7,10 @@ as.network.data.frame <- function(x, directed=TRUE, vertices=NULL, ...)
     if (ncol(x) < 2) {
         stop("the data frame should contain at least two columns")
     }
-    if (any(is.na(x))) {
-        warning("In `x' `NA' elements were replaced with string \"NA\"")
-        x[is.na(x)] <- "NA"
+
+    if (any(is.na(x[,1:2]))) {
+        warning("In first two columns of `x' `NA' elements were replaced with string \"NA\"")
+        x[,1:2][is.na(x[,1:2])] <- "NA"
     }
     if (!is.null(vertices) && any(is.na(vertices[, 1]))) {
         warning("In `vertices[,1]' `NA' elements were replaced with string \"NA\"")
@@ -119,9 +120,9 @@ as.network.igraph <- function(x, attrmap=attrmap(), ...)
 
     ### make 'igraph' object
     rval <- as.network( edges,
-        directed=igraph::is.directed(object),
-        multiple = any(igraph::is.multiple(object)),
-        loops = any(igraph::is.loop(object)),
+        directed=igraph0::is.directed(object),
+        multiple = any(igraph0::is.multiple(object)),
+        loops = any(igraph0::is.loop(object)),
         vertices=vertexes, ...)
 
     ### apply/rename/drop network attributes

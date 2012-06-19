@@ -22,7 +22,7 @@ This is a generic function which dispatches on argument \code{x}.  It creates
 objects of class "network" from other R objects.
 
 The method for data frames is inspired by the similar function in package
-\pkg{igraph}: \code{\link[igraph]{graph.data.frame}}.  It assumes that first
+\pkg{igraph}: \code{\link[igraph0]{graph.data.frame}}.  It assumes that first
 two columns of \code{x} constitute  an edgelist.  The remaining columns are
 interpreted as edge attributes. Optional argument \code{vertices} allows for
 including vertex attributes.  The first column is assumed to vertex id, the
@@ -38,7 +38,7 @@ does not support bipartite "igraph" networks.
 Object of class "network".
 }
 \seealso{
-\code{\link[igraph]{graph.data.frame}}
+\code{\link[igraph0]{graph.data.frame}}
 
 \code{\link{as.igraph}} for conversion in the other direction.
 }

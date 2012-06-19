@@ -25,7 +25,7 @@ as.igraph(object, ...)
 objects of class \code{network}.
 
 If \code{object} is a data frame, the method used is a wrapper around
-\code{\link[igraph]{graph.data.frame}} in package \pkg{igraph}. The
+\code{\link[igraph0]{graph.data.frame}} in package \pkg{igraph}. The
 \code{vnames} argument was added so that the user can specify which vertex
 attribute from the data frame supplied through \code{vertices} argument is used
 for vertex names (the \code{name} attribute in \code{igraph} objects) in the
@@ -43,7 +43,7 @@ objects that represent neither bipartite networks nor hypergraphs.
 Object of class "igraph".
 }
 \seealso{
-\code{\link[igraph]{graph.data.frame}}
+\code{\link[igraph0]{graph.data.frame}}
 }
 \examples{
 ### using 'as.igraph' on objects of class 'network'
@@ -83,5 +83,5 @@ gv <- as.igraph(ed, vertices=vd, directed=FALSE)
 
 # NOTE: Even though vertex ids start at 6 the network has 4 nodes:
 range(vd$id) # min and max of node ids
-if(require(igraph)) igraph::vcount(gv) # number of nodes in 'gv'
+if(require(igraph0)) igraph0::vcount(gv) # number of nodes in 'gv'
 }

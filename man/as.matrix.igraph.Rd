@@ -27,7 +27,7 @@ Otherwise \code{attrname} can be a name of edge attribute of \code{x}. In that
 case the cells of the results are the values of that attribute.
 
 Other arguments passed through \code{...} are passed to either
-\code{\link[igraph]{get.adjacency}} or \code{\link[igraph]{get.edgelist}}
+\code{\link[igraph0]{get.adjacency}} or \code{\link[igraph0]{get.edgelist}}
 depending on the value of \code{matrix.type}.
 }
 \value{
@@ -35,7 +35,7 @@ Depending on the value of \code{matrix.type} either a square adjacency matrix
 or a two-column numeric matrix representing the edgelist.
 }
 \seealso{
-\code{\link[igraph]{get.adjacency}}, \code{\link[igraph]{get.edgelist}}
+\code{\link[igraph0]{get.adjacency}}, \code{\link[igraph0]{get.edgelist}}
 }
 \examples{
 data(exIgraph)

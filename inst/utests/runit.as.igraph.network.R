@@ -1,6 +1,6 @@
 test.as.igraph.network <- function()
 {
-  require(igraph)
+  require(igraph0)
   require(network)
 
   # directed network

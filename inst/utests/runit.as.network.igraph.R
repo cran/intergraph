@@ -1,7 +1,7 @@
 test.as.network.igraph <- function()
 {
   require(network)
-  require(igraph)
+  require(igraph0)
   # directed network
   data(exIgraph)
   res <- netcompare( as.network(exIgraph), exIgraph, test=TRUE )

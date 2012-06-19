@@ -10,7 +10,7 @@ classes used to represent network data in \R.
 \details{
 Functions implemented in this package allow to coerce (i.e., convert) network
 data between classes provided by other R packages. Currently supported packages
-are: \pkg{network}, \pkg{igraph}.
+are: \pkg{network}, \pkg{igraph} (versions prior to 0.6, see Note below).
 
 The main functions are:
 \itemize{
@@ -27,13 +27,22 @@ in this package. This may change in the future.
 If you find this package useful in your work please cite it. Type
 \code{citation(package="intergraph")} for the information how to do that.
 }
+\note{
+  In June 2012 a new version 0.6 of \pkg{igraph} was released which is not
+  backward-compatibile. The legacy version is renamed to \pkg{igraph0}.  This
+  version of package \pkg{intergraph} (1.2-x) relies on the legacy
+  \pkg{igraph0}.
+
+  The next version of \pkg{intergraph} (1.3-x) will be compatible with
+  the new API of \pkg{igraph} (0.6 or later).
+}
 \author{
-Written and maintained by Michal Bojanowski \email{michal2992@gmail.com}.
+Written and maintained by Michal Bojanowski \email{mbojan@icm.edu.pl}.
 }
 \examples{
 # example of converting objects between classes 'network' and 'igraph'
 
-if( require(network) & require(igraph) )
+if( require(network) & require(igraph0) )
 {
 
   ### convert 'network' -> 'igraph'
@@ -46,7 +55,7 @@ if( require(network) & require(igraph) )
 
   # check if 'exNetwork' and 'g' are the same
   all.equal( as.matrix(exNetwork, "edgelist"), 
-    igraph::get.edgelist(g) + 1 )   
+    igraph0::get.edgelist(g) + 1 )   
     # +1 because igraph's vertex ids start from 0
 
   # compre results using 'netcompare'

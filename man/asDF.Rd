@@ -49,7 +49,7 @@ There are the following methods available based on the class of \code{object}:
   vertex data frame as a normal vertex attribute and is not used
   on the edge list data frame.
 
-  The edge list is created using \code{\link[igraph]{get.edgelist}}
+  The edge list is created using \code{\link[igraph0]{get.edgelist}}
   function with argument \code{names} set to \code{FALSE} so that integer
   vertex ids are used (starting from 0 up to \code{vcount(object)-1}.}
 }
