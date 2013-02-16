@@ -1,24 +1,25 @@
 Package: intergraph
 Type: Package
 Title: Coercion routines for network data objects in R
-Version: 1.2-0
-Date: 2012-06-19
+Version: 2.0-0
+Date: 2013-02-16
 Author: Michal Bojanowski
-Maintainer: Michal Bojanowski <mbojan@icm.edu.pl>
+Maintainer: Michal Bojanowski <m.bojanowski@icm.edu.pl>
 Description: R world provides several packages for working with network
         data.  This package supplements that functionality by providing
         methods for converting network data objects between classes
         defined in other packages. Currently supported classes:
-        network, igraph0. This version is compatible with legacy
-        version of igraph (prior to 0.6, renamed to igraph0).  Future
-        versions of 'intergraph' will be compatible with new igraph API
-        (0.6 or later).
+        network, igraph.
 URL: http://intergraph.r-forge.r-project.org, http://www.bojanorama.pl
-Imports: utils, graphics, network (>= 1.4-1-1), igraph0
-Suggests: RUnit
+Imports: utils, graphics, network (>= 1.4-1-1), igraph (>= 0.6-0)
+Suggests: testthat, roxygen2
 License: GPL-3
 LazyLoad: yes
 LazyData: yes
-Packaged: 2012-06-19 14:52:41 UTC; mbojan
+Collate: 'as.matrix.igraph.R' 'asDF.R' 'attrmap.R' 'dumpAttr.R'
+        'exNetwork.R' 'netcompare.R' 'recode.R' 's3common.R'
+        'validnet.R' 'asIgraph.R' 'asNetwork.R' 'intergraph-package.R'
+Packaged: 2013-05-07 14:58:35 UTC; mbojan
+NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2012-06-19 15:46:57
+Date/Publication: 2013-05-08 07:29:48
