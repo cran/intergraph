@@ -6,9 +6,7 @@ test_that("Disassembling to d.f and assembling back to igraph gives the same res
   l <- asDF(exIgraph)
   # assemble back
   g <- asIgraph( l$edges, vertices=l$vertexes)
-  # copy layout attribute
-  g$layout <- exIgraph$layout
-  expect_that(g, is_identical_to(exIgraph))
+  expect_identical(g, exIgraph)
 } )
 
 
@@ -35,8 +33,7 @@ test_that("Vertex names are properly set via 'vnames' argument for undirected ne
   ## convert to data frames and assemble back to igraph object
   l <- asDF(exIgraph2)
   g <- asIgraph( l$edges, vertices=l$vertexes, directed=FALSE)
-  g$layout <- exIgraph2$layout
-  expect_that( g, is_identical_to(exIgraph2))
+  expect_identical( g, exIgraph2)
 } )
 
 
@@ -51,19 +48,15 @@ test_that("Vertex names are properly set via 'vnames' argument for undirected ne
 context("Creating igraphs from networks")
 
 
-require(igraph)
-require(network)
 
 test_that("Conversion for exNetwork is OK tested with netcompare", {
   # directed network
-  data(exNetwork)
   res <- netcompare( asIgraph(exNetwork), exNetwork, test=TRUE )
   expect_true(res)
 } )
 
-test_that("Conversion for exNetwork is OK tested with netcompare", {
+test_that("Conversion for exNetwork2 is OK tested with netcompare", {
   # undirected network
-  data(exNetwork2)
   res2 <- netcompare( asIgraph(exNetwork2), exNetwork2, test=TRUE )
   expect_true(res2)
 } )

@@ -6,21 +6,30 @@
 #' the supported classes. They do not have to be of the same class though.
 #' 
 #' The function does a series of comparisons between \code{target} and
-#' \code{current}: \enumerate{ \item The network structure comparison is made
-#' based on adjacency matrices (mind this when using for huge networks).
+#' \code{current}:
+#'
+#' \enumerate{
+#' \item The network structure comparison is made based on adjacency matrices
+#' (mind this when using for huge networks).
 #' 
 #' \item Network/edge/vertex attributes are checked for presence in both
 #' objects.
 #' 
-#' \item Common network/edge/vertex attribures are checked for equality. } All
-#' the results are collected in a list of class \code{netcompare} with an
+#' \item Common network/edge/vertex attribures are checked for equality.
+#' }
+
+#' All the results are collected in a list of class \code{netcompare} with an
 #' associated \code{print} method.
 #' 
 #' If \code{test} is TRUE then instead of the detailed test results the function
 #' returns TRUE or FALSE depending on some of the checks resulted positively.
 #' Currently attribute checks are ignored, i.e. what is taken into account is:
-#' \enumerate{ \item Equivalence of adjacency matrices \item Directed /
-#' undirected character of the network \item Edge set size \item Vertex set size
+#'
+#' \enumerate{
+#' \item Equivalence of adjacency matrices
+#' \item Directed / undirected character of the network
+#' \item Edge set size
+#' \item Vertex set size
 #' }
 #' 
 #' @param target,current network objects, currently \code{network} and
@@ -72,21 +81,6 @@ netcompare <- function(target, current, test=FALSE, ...)
 }
 
 
-print.netcomparea <- function(x, ...)
-{
-  m <- do.call("rbind", lapply( x[c("n", "presence")], format))
-  print(m, quote=FALSE)
-  cat("Common attributes comparison (TRUE=identical)\n")
-  if( identical( x$bycomp, as.character(NA)) )
-  {
-    cat("   No common attributes\n")
-  } else
-  {
-    l <- sapply(x$bycomp, paste, collapse=", ")
-    for(i in seq(along=l))
-      cat(names(l)[i], ":", l[i], fill=TRUE, labels="   ")
-  }
-}
 
 
 
@@ -173,7 +167,7 @@ compareAlist <- function(target, current)
 
 
 
-# given a lists of attributes compare
+# Compare lists of attributes (as returned by 'dumpAttr')
 
 compareAttributes <- function(target, current)
 {
@@ -193,4 +187,22 @@ compareAttributes <- function(target, current)
   rval$presence <- pre
   rval$bycomp <- compareAlist(target, current)
   structure(rval, class="netcomparea")
+}
+
+
+# Print method for the result of 'compareAttributes'
+print.netcomparea <- function(x, ...)
+{
+  m <- do.call("rbind", lapply( x[c("n", "presence")], format))
+  print(m, quote=FALSE)
+  cat("Common attributes comparison (TRUE=identical)\n")
+  if( identical( x$bycomp, as.character(NA)) )
+  {
+    cat("   No common attributes\n")
+  } else
+  {
+    l <- sapply(x$bycomp, paste, collapse=", ")
+    for(i in seq(along=l))
+      cat(names(l)[i], ":", l[i], fill=TRUE, labels="   ")
+  }
 }

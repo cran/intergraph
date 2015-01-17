@@ -1,4 +1,4 @@
-#' Coercion routines for network data objects in R
+#' Coercion Routines for Network Data Objects
 #' 
 #' This package contains methods for coercion between various classes used to
 #' represent network data in R.
@@ -23,8 +23,9 @@
 #' 
 #' If you find this package useful in your work please cite it. Type
 #' \code{citation(package="intergraph")} for the information how to do that.
-#' 
+#'
 #' @importFrom network as.matrix.network
+#' @importFrom network add.edges.network
 #'
 #' @docType package
 #' @name intergraph-package
