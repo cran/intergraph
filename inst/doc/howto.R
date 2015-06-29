@@ -1,8 +1,9 @@
 ## ----, setup, include=FALSE, echo=FALSE----------------------------------
 library(intergraph)
 library(knitr)
-options(markdown.HTML.options="toc")
-opts_knit$set(upload.fun = image_uri)
+opts_knit$set( upload.fun = image_uri )
+opts_chunk$set( highlight=TRUE )
+options(markdown.HTML.options= unique(c(getOption("markdown.HTML.options"), "toc")))
 set.seed(123)
 
 ## ----,packages-----------------------------------------------------------
