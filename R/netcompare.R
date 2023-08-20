@@ -85,7 +85,7 @@ netcompare <- function(target, current, test=FALSE, ...)
 
 
 
-
+#' @export
 print.netcompare <- function(x, ...)
 {
   cat("\n")
@@ -122,6 +122,7 @@ print.netcompare <- function(x, ...)
 # NOTE: Makes use of non-exported generic functions
 
 
+
 compareTest <- function(object)
 {
   stopifnot(inherits(object, "netcompare"))
@@ -136,6 +137,8 @@ compareTest <- function(object)
 
 compareEdges <- function(target, current, use.names=FALSE)
 {
+  op <- igraph::igraph_options(sparsematrices = FALSE)
+  on.exit(igraph::igraph_options(op))
   tr <- try(utils::getS3method("as.matrix", class=class(target)), silent=TRUE)
   if(inherits(tr, "try-error"))
     stop("cannot find 'as.matrix' method for class ", dQuote(class(target)))
@@ -171,19 +174,23 @@ compareAlist <- function(target, current)
 
 compareAttributes <- function(target, current)
 {
-  # compare number of attributes
   rval <- list()
+  # compare number of attributes
   rval$n <- c(target=length(target), current=length(current))
-  # compare names
+  # Check for attributes by name
   pre <- list()
   u <- union(names(target), names(current))
-  r <- t(sapply(u, function(a)
+  if(length(u) == 0L) {
+    pre <- matrix(NA, 0, 2, dimnames = list(NULL, c("target", "current")))
+  } else {
+    r <- t(sapply(u, function(a)
       c( a %in% names(target),
-          a %in% names(current) )
-      ))
-  pre <- c(pre, list(r))
-  pre <- do.call("rbind", pre)
-  dimnames(pre) <- list(rownames(pre), c("target", "current"))
+         a %in% names(current) )
+    ))
+    pre <- c(pre, list(r))
+    pre <- do.call("rbind", pre)
+    dimnames(pre) <- list(rownames(pre), c("target", "current"))
+  }
   rval$presence <- pre
   rval$bycomp <- compareAlist(target, current)
   structure(rval, class="netcomparea")
@@ -191,6 +198,7 @@ compareAttributes <- function(target, current)
 
 
 # Print method for the result of 'compareAttributes'
+#' @export
 print.netcomparea <- function(x, ...)
 {
   m <- do.call("rbind", lapply( x[c("n", "presence")], format))

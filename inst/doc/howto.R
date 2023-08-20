@@ -1,25 +1,23 @@
-## ----, setup, include=FALSE, echo=FALSE----------------------------------
+## ---- setup, include=FALSE----------------------------------------------------
 library(intergraph)
 library(knitr)
-opts_knit$set( upload.fun = image_uri )
-opts_chunk$set( highlight=TRUE )
-options(markdown.HTML.options= unique(c(getOption("markdown.HTML.options"), "toc")))
+
 set.seed(123)
 
-## ----,packages-----------------------------------------------------------
+## ----packages-----------------------------------------------------------------
 library(intergraph)
 library(network)
 library(igraph)
 
-## ----, summarize-igraph--------------------------------------------------
+## ---- summarize-igraph--------------------------------------------------------
 summary(exIgraph)
 summary(exIgraph2)
 
-## ----,summarize-network--------------------------------------------------
+## ----summarize-network--------------------------------------------------------
 exNetwork
 exNetwork2
 
-## ----,network2igraph-----------------------------------------------------
+## ----network2igraph-----------------------------------------------------------
 # check class of 'exNetwork'
 class(exNetwork)
 # convert to 'igraph'
@@ -27,23 +25,23 @@ g <- asIgraph(exNetwork)
 # check class of the result
 class(g)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 el.g <- get.edgelist(g)
 el.n <- as.matrix(exNetwork, "edgelist")
 identical( as.numeric(el.g), as.numeric(el.n))
 
-## ----,igraph2network-----------------------------------------------------
+## ----igraph2network-----------------------------------------------------------
 net <- asNetwork(exIgraph)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 el.g2 <- get.edgelist(exIgraph)
 el.n2 <- as.matrix(net, "edgelist")
 identical( as.numeric(el.g2), as.numeric(el.n2))
 
-## ----attrmap-defaults----------------------------------------------------
+## ----attrmap-defaults---------------------------------------------------------
 attrmap()
 
-## ----attrmap-example-rules-----------------------------------------------
+## ----attrmap-example-rules----------------------------------------------------
 new_rule <- data.frame(type="vertex", fromcls="network", fromattr="na",
                        tocls="igraph", toattr=NA,
                        stringsAsFactors=FALSE)
@@ -51,7 +49,7 @@ new_rule <- data.frame(type="vertex", fromcls="network", fromattr="na",
 rules <- rbind( attrmap(), new_rule )
 rules
 
-## ----attrmap-example-----------------------------------------------------
+## ----attrmap-example----------------------------------------------------------
 (ig1 <- asIgraph(exNetwork))
 (ig2 <- asIgraph(exNetwork, amap=rules))
 
@@ -59,21 +57,21 @@ rules
 "na" %in% igraph::list.vertex.attributes(ig1)
 "na" %in% igraph::list.vertex.attributes(ig2)
 
-## ----asDF----------------------------------------------------------------
+## ----asDF---------------------------------------------------------------------
 l <- asDF(exIgraph)
 str(l)
 
-## ----show-edgedb---------------------------------------------------------
+## ----show-edgedb--------------------------------------------------------------
 l$edges
 
-## ----show-vertexdb-------------------------------------------------------
+## ----show-vertexdb------------------------------------------------------------
 l$vertexes
 
-## ----fromdf--------------------------------------------------------------
+## ----fromdf-------------------------------------------------------------------
 z <- asNetwork(l$edges, directed=TRUE, l$vertexes)
 z
 
-## ----showdata-code,eval=FALSE--------------------------------------------
+## ----showdata-code,eval=FALSE-------------------------------------------------
 #  layout(matrix(1:4, 2, 2, byrow=TRUE))
 #  op <- par(mar=c(1,1,2,1))
 #  # compute layout
@@ -95,6 +93,6 @@ plot(exNetwork, main="exNetwork", displaylabels=TRUE, coord=coords)
 plot(exNetwork2, main="exNetwork2", displaylabels=TRUE, coord=coords)
 par(op)
 
-## ----, session_info------------------------------------------------------
+## ---- session_info------------------------------------------------------------
 sessionInfo()
 

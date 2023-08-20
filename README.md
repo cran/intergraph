@@ -1,10 +1,33 @@
-# Package "intergraph"
+# `intergraph`: Coercion Routines for Network Data Objects
 
-[![Build Status](https://travis-ci.org/mbojan/intergraph.png?branch=master)](https://travis-ci.org/mbojan/intergraph)
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.19148.svg)](http://dx.doi.org/10.5281/zenodo.19148)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/mbojan/intergraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mbojan/intergraph/actions/workflows/R-CMD-check.yaml)
+[![](https://www.r-pkg.org/badges/version/intergraph)](https://www.r-pkg.org/pkg/intergraph)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/intergraph)](https://CRAN.R-project.org/package=intergraph)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/intergraph)](https://www.r-pkg.org/pkg/intergraph)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.19148.svg)](https://dx.doi.org/10.5281/zenodo.19148)
+[![Codecov test coverage](https://codecov.io/gh/mbojan/intergraph/branch/master/graph/badge.svg)](https://app.codecov.io/gh/mbojan/intergraph?branch=master)
+<!-- badges: end -->
 
 This is an R package implementing methods for converting network data objects
 between classes defined in other packages. Currently supported classes:
 network, igraph.
 
-See projects web page on [mbojan.github.io/intergraph](http://mbojan.github.io/intergraph).
+See projects web page on [mbojan.github.io/intergraph](https://mbojan.github.io/intergraph/).
+
+
+
+# Install
+
+Install stable version from CRAN or development version with
+
+```r
+remotes::install_github("mbojan/intergraph")
+```
+
+
+# License
+
+GPL-3.
+

@@ -1,5 +1,4 @@
-context("Creating igraphs from data frames")
-
+# From data.frames --------------------------------------------------------
 
 test_that("Disassembling to d.f and assembling back to igraph gives the same result", {
   # convert to data frames
@@ -14,7 +13,9 @@ test_that("Disassembling to d.f and assembling back to igraph gives the same res
 test_that("Providing non-existing name to 'vnames' throws an error", {
   ## testing 'vnames' argument
   # non-existent column in 'vertices'
-  expect_that( asIgraph(l$edges, vertices=l$vertexes, vnames="foo"), throws_error())
+  expect_error(
+    asIgraph(l$edges, vertices=l$vertexes, vnames="foo")
+  )
 } )
 
 
@@ -38,6 +39,33 @@ test_that("Vertex names are properly set via 'vnames' argument for undirected ne
 
 
 
+# From tibbles ------------------------------------------------------------
+
+test_that("Igraph is created from edgelist as tibble", {
+  edb <- tibble::tibble(
+    from = 1:4,
+    to = 2:5
+  )
+  expect_silent(
+    net <- asIgraph(edb)
+  )
+  expect_equal( igraph::vcount(net), 5)
+  expect_equal( igraph::ecount(net), 4)
+})
+
+test_that("Network is created from tibbles", {
+  edb <- tibble::tibble(
+    from = 1:4,
+    to = 2:5
+  )
+  vdb <- tibble::tibble(
+    id = 1:5,
+    ch = letters[1:5]
+  )
+  expect_silent( net <- asIgraph(edb, vertices=vdb))
+  expect_equal( igraph::vcount(net), 5)
+  expect_equal( igraph::ecount(net), 4)
+})
 
 
 
@@ -45,9 +73,9 @@ test_that("Vertex names are properly set via 'vnames' argument for undirected ne
 
 
 
-context("Creating igraphs from networks")
 
 
+# From networks -----------------------------------------------------------
 
 test_that("Conversion for exNetwork is OK tested with netcompare", {
   # directed network
