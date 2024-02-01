@@ -1,4 +1,4 @@
-## ---- setup, include=FALSE----------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------
 library(intergraph)
 library(knitr)
 
@@ -9,7 +9,7 @@ library(intergraph)
 library(network)
 library(igraph)
 
-## ---- summarize-igraph--------------------------------------------------------
+## ----summarize-igraph---------------------------------------------------------
 summary(exIgraph)
 summary(exIgraph2)
 
@@ -54,8 +54,8 @@ rules
 (ig2 <- asIgraph(exNetwork, amap=rules))
 
 # check if "na" was dropped
-"na" %in% igraph::list.vertex.attributes(ig1)
-"na" %in% igraph::list.vertex.attributes(ig2)
+"na" %in% igraph::vertex_attr_names(ig1)
+"na" %in% igraph::vertex_attr_names(ig2)
 
 ## ----asDF---------------------------------------------------------------------
 l <- asDF(exIgraph)
@@ -93,6 +93,6 @@ plot(exNetwork, main="exNetwork", displaylabels=TRUE, coord=coords)
 plot(exNetwork2, main="exNetwork2", displaylabels=TRUE, coord=coords)
 par(op)
 
-## ---- session_info------------------------------------------------------------
+## ----session_info-------------------------------------------------------------
 sessionInfo()
 
